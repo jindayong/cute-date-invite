@@ -121,6 +121,31 @@ export default function App() {
     window.setTimeout(() => setHearts([]), 3600);
   };
 
+  const makeGoogleCalendarUrl = () => {
+    if (!date || !time || !selectedMenu) return;
+
+    const start = new Date(`${date}T${time}:00`);
+    const end = new Date(start.getTime() + 2 * 60 * 60 * 1000);
+
+    const toGcalLocal = (d) =>
+      `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}${pad(d.getSeconds())}`;
+
+    const params = new URLSearchParams({
+      action: "TEMPLATE",
+      text: "데이트 약속 💕",
+      dates: `${toGcalLocal(start)}/${toGcalLocal(end)}`,
+      details: `우리 ${selectedMenu} 먹으러 데이트하기로 한 날 💕`,
+      location: "",
+      ctz: "Asia/Seoul"
+    });
+
+    window.open(
+      `https://calendar.google.com/calendar/render?${params.toString()}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
   const makeCalendarFile = () => {
     if (!selectedDateTime || !selectedMenu) return;
 
@@ -308,9 +333,14 @@ export default function App() {
 
             {isConfirmed && <p className="done-message">데이트 예약 완료 💕</p>}
 
-            <button className="calendar-button" type="button" onClick={makeCalendarFile}>
-              캘린더에 추가하기
-            </button>
+            <div className="calendar-buttons">
+              <button className="calendar-button" type="button" onClick={makeCalendarFile}>
+                캘린더에 추가하기
+              </button>
+              <button className="gcal-button" type="button" onClick={makeGoogleCalendarUrl}>
+                구글 캘린더에 추가하기
+              </button>
+            </div>
             <p className="calendar-note">
               좋아하는 사람과의 약속은 잊어버리면 안 되니까 😘
             </p>
