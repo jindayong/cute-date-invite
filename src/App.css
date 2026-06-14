@@ -1,0 +1,413 @@
+.date-app {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 18px;
+  color: #5b2637;
+  background:
+    radial-gradient(circle at 16% 16%, rgba(255, 178, 203, 0.5), transparent 30%),
+    radial-gradient(circle at 84% 10%, rgba(255, 233, 181, 0.66), transparent 28%),
+    linear-gradient(145deg, #fff8ef 0%, #ffe4ef 52%, #fff9ed 100%);
+}
+
+.phone-shell {
+  width: min(100%, 430px);
+  min-height: min(760px, calc(100svh - 36px));
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 129, 166, 0.28);
+  border-radius: 32px;
+  background: rgba(255, 253, 247, 0.86);
+  box-shadow: 0 26px 70px rgba(211, 92, 130, 0.2);
+  backdrop-filter: blur(20px);
+  animation: appEnter 0.72s ease both;
+}
+
+.screen {
+  min-height: min(760px, calc(100svh - 36px));
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 34px 24px;
+}
+
+.intro-screen {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.card-screen,
+.final-screen {
+  justify-content: center;
+  gap: 16px;
+}
+
+.soft-glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(2px);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.soft-glow-one {
+  width: 170px;
+  height: 170px;
+  left: -56px;
+  top: -34px;
+  background: rgba(255, 187, 209, 0.48);
+}
+
+.soft-glow-two {
+  width: 150px;
+  height: 150px;
+  right: -44px;
+  bottom: 32px;
+  background: rgba(255, 230, 165, 0.52);
+}
+
+.mini-label {
+  margin: 0 0 8px;
+  color: #d65786;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: #7c2e4a;
+  letter-spacing: 0;
+}
+
+h1 {
+  max-width: 320px;
+  font-size: clamp(2.4rem, 14vw, 4.25rem);
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.15;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.button-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+}
+
+.primary-button,
+.secondary-button,
+.calendar-button,
+.menu-card {
+  border: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.primary-button {
+  min-height: 56px;
+  padding: 15px 24px;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 900;
+  background: linear-gradient(135deg, #ff6798, #ff8cba);
+  box-shadow: 0 16px 26px rgba(225, 83, 128, 0.28);
+}
+
+.primary-button:active,
+.calendar-button:active,
+.menu-card:active {
+  transform: scale(0.98);
+}
+
+.primary-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+  box-shadow: none;
+}
+
+.yes-button {
+  min-width: 150px;
+  animation: pulseButton 1.8s ease-in-out infinite;
+}
+
+.secondary-button {
+  min-width: 84px;
+  min-height: 48px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  color: #b95473;
+  font-weight: 900;
+  background: #fff8ee;
+  box-shadow: 0 10px 24px rgba(174, 91, 119, 0.16);
+}
+
+.runaway-button {
+  position: fixed;
+  z-index: 5;
+  transition:
+    left 0.24s ease,
+    top 0.24s ease,
+    transform 0.2s ease;
+}
+
+.tease-message {
+  min-height: 28px;
+  margin: 28px 0 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  color: #b9416b;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.72);
+  animation: popIn 0.28s ease both;
+}
+
+.choice-card,
+.result-card,
+.countdown-card,
+.custom-menu {
+  border: 1px solid rgba(255, 145, 178, 0.3);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 14px 32px rgba(211, 92, 130, 0.12);
+}
+
+.choice-card,
+.custom-menu {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+}
+
+label {
+  color: #91445d;
+  font-size: 0.94rem;
+  font-weight: 900;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid rgba(214, 87, 134, 0.22);
+  border-radius: 18px;
+  padding: 0 14px;
+  color: #67283f;
+  background-color: #fffaf2;
+  outline: none;
+}
+
+select {
+  appearance: none;
+  padding-right: 42px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #d65786 50%),
+    linear-gradient(135deg, #d65786 50%, transparent 50%);
+  background-position:
+    calc(100% - 21px) 23px,
+    calc(100% - 15px) 23px;
+  background-repeat: no-repeat;
+  background-size: 6px 6px;
+}
+
+input:focus,
+select:focus {
+  border-color: #ff7eaa;
+  box-shadow: 0 0 0 4px rgba(255, 126, 170, 0.15);
+}
+
+.full-button {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.menu-card {
+  min-height: 116px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 145, 178, 0.28);
+  border-radius: 24px;
+  color: #722b44;
+  font-weight: 900;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 12px 28px rgba(211, 92, 130, 0.11);
+}
+
+.menu-card span {
+  font-size: 2.1rem;
+}
+
+.menu-card.selected {
+  border-color: #ff79a7;
+  background: #fff0f6;
+}
+
+.result-card {
+  padding: 22px;
+}
+
+.result-card p {
+  margin: 0;
+  color: #702d45;
+  font-size: 1.3rem;
+  font-weight: 900;
+  line-height: 1.55;
+}
+
+.countdown-card {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+}
+
+.countdown-card span {
+  color: #a14b66;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.countdown-card strong {
+  color: #d94d7d;
+  font-size: 1.35rem;
+}
+
+.done-message {
+  margin: 0;
+  border-radius: 999px;
+  padding: 12px 16px;
+  color: #b43a68;
+  font-weight: 900;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.78);
+  animation: popIn 0.28s ease both;
+}
+
+.calendar-button {
+  min-height: 52px;
+  border-radius: 999px;
+  color: #b64369;
+  font-weight: 900;
+  background: #fff8ee;
+  box-shadow: inset 0 0 0 1px rgba(255, 139, 177, 0.32);
+}
+
+.calendar-note {
+  margin: -4px 0 0;
+  color: #9b6575;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.heart-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.heart-layer span {
+  position: absolute;
+  bottom: -42px;
+  animation: heartFly 3.2s ease-in forwards;
+}
+
+@keyframes appEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulseButton {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heartFly {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0deg);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-105svh) rotate(34deg);
+  }
+}
+
+@media (max-width: 380px) {
+  .date-app {
+    padding: 10px;
+  }
+
+  .phone-shell,
+  .screen {
+    min-height: calc(100svh - 20px);
+  }
+
+  .screen {
+    padding: 28px 18px;
+  }
+
+  .menu-card {
+    min-height: 102px;
+  }
+}
